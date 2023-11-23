@@ -1,0 +1,131 @@
+Lo primero que se hace es proveer a prolog de una base de conocimiento.
+Y dicha base se establece a través de hechos y reglas.
+
+Hecho: expresa una relación entre objetos o argumentos, los cuales
+siempre serán verdaderos.
+
+    Por ejemplo: blacky es un perro.
+
+    De acuerdo a este hecho se está haciendo una afirmación de que blacky
+    es un perro.
+
+    La forma correcta de escribir este hecho en prolog es:
+    is_dog(blacky).
+
+    En este hecho se puede identificar que existe una relación y un objeto
+    is_dog es la relación y blacky es el objeto.
+
+    De manera general hay 4 reglas para una correcta sintáxis:
+
+    1. el nombre de los objetos y las relaciones deben comenzar con
+    minúscula.
+    2. primero se debe escribir la relación y luego los objetos, a modo
+    de argumento (separados por comas en caso de que sea más de uno).
+    3. se permite usar guión bajo para separar palabras o caracteres.
+    4. siempre se finaliza con un punto.
+
+
+    Ejemplo 2: Vamos a definir 3 hechos, blacky es un perro, tom es un
+    gato y jerry es un ratón. La sintaxis correcta entonces sería:
+
+    is_dog(blacky).
+    is_cat(tom).
+    is_mouse(jerry).
+
+
+Recursividad
+
+suma(0,0).
+suma(N, R):- N + suma(N-1, R). prolog no permite realizar operaciones en el argumento
+suma(N, R):- A is N-1, R is N + suma(A, R). prolog no permite realizar operaciones entre un predicado y un valor
+hay que llamar a ese predicado recursivamente e igualarlo a una variable y luego sumar esos valores.
+suma(N,ResultadoFinal):- Anterior is N-1, suma(Anterior, ResultadoAnterior), ResultadoFinal is N + ResultadoAnterior.
+
+Cortes
+
+El gran problema aquí es que prolog podrá determinar una solución apropiada, pero luego seguirá calculando
+para n < 0, y esto provocaría un stack overflow, ya que iteraría infinitamente hacia los números negativos,
+entonces habría que encontrar una manera de recortar esa rama de soluciones.
+
+Para definir que se termine un procedimiento luego de determinarse una regla se debe insertar
+un signo de exclamación al inicio del cuerpo de la regla. En este caso queremos que termine
+la recursividad cuando se ejecute el caso base suma(0,0), luego:
+
+suma(0,0):-!.
+suma(Number,Result):- 
+  LastNumber is Number-1, 
+  suma(LastNumber, LastResult), 
+  Result is Number + LastResult.
+
+Corte verde y corte rojo
+Para ello tenemos este problema con la que queremos devolver 1, 2 o 3 en dependencia del valor que le demos
+a n.
+si N > 0 y N <= 2, S = 1
+si N > 2 y N <= 5, S = 2
+si N > 5, S = 3
+
+lo que se puede llevar a estas declaraciones.
+rango(N, 1):- N > 0, N =< 2.
+rango(N, 2):- N > 2, N =< 5.
+rango(N, 3):- N > 5.
+
+Pero el lío es que queremos evitar que se continue evaluando otras funciones con el mismo nombre si ya
+una de las anteriores dio el resultado, para esto usamos el corte con el signo de exclamación al final
+de cada procedimiento.
+
+rango(N, 1):- N > 0, N =< 2, !.
+rango(N, 2):- N > 2, N =< 5, !.
+rango(N, 3):- N > 5.
+
+Y este tipo de corte se denomina corte verde porque evita las soluciones que no cumplen los casos y si
+se eliminan dichos cortes aún así las soluciones serán las mismas que cuando exista el corte, o sea,
+si se eliminan los cortes seguirán dando las mismas soluciones, pero es más ineficiente porque seguirán
+comprobándose las siguientes funciones con el backtracking.
+
+Ahora, un corte rojo surge cuando es estrictamente necesario que el corte surja para que se cumpla con
+las soluciones correctas, como por ejemplo:
+
+rango(N, 1):- N > 0, N =< 2, !.
+rango(N, 2):- N > 2, N =< 5, !.
+rango(_, 3).
+
+Aquí el corte es necesario porque de otra forma, al insertar, por ejemplo, 1, la función de rango
+devolverá 1 y luego 3, ya quqe ambas declaraciones cumplen con los requisitos, y la tercera es un
+hecho.
+
+
+% Las listas se usan para mantener un conjunto de datos, buscar elementos de la misma,
+% realizar relaciones.
+
+% Agreguemos una regla la cuál va a devolver un parámetro l que devolverá una lista.
+% La lista se define entre corchetes, donde cada elemento se separa por comas.
+listar(L):- L = [1,2,3,4,5].
+
+% sublistas
+listaSublista(L):- Cabeza = 1, Cola = [2,3,4,5], L = [Cabeza|Cola].
+
+% Una lista (como estructura) solo tiene dos elementos, una cabeza y una cola, como estructura
+% tendrá las que se requieran, en este caso, 5.
+
+% Pueden existir listas dentro de las sublistas.
+listaDentro(L):- Cabeza = 1, Cola = [2,3,[3.1,3.2,3.3],4,5], L = [Cabeza|Cola].
+
+% Además, pueden surgir elementos dentro de la sublista, como en el siguiente ejemplo, cabeza,
+% tiene anterior a él, un elemento 0.
+listaDentroCabeza(L):- Cabeza = 1, Cola = [2,3,[3.1,3.2,3.3],4,5], L = [0,Cabeza|Cola].
+
+% Tanto cabeza como cola pueden ser listas, sublistas o valores.
+listaTotal(L):- Cabeza = [1, 1.1], Cola = [2,3,[3.1,3.2,3.3],4,5], L = [0,Cabeza|Cola].
+
+% Cómo obtener la cabeza de una lista pasada por el usuario.
+dameCabeza([C|_],C). % Esto devolverá el primer elemento ya que es el primero que unifica con ser el primer
+% elemento, que por defecto es la cabeza.
+
+% % Lo mismo puede suceder con la cola, podemos obtener la cola como el resto de elementos luego del primero.
+% dameCola([C|L],L).
+
+% Ahora, si queremos eliminar los dos primeros elementos de una lista, al devolver en el anterior ejemplo
+% la cola sin el primer elemento (la cabeza), de esa cola, como es una lista, tendrá como cabeza su primer
+% elemento también, así que solo deberíamos devolver la cola de la primera cola, eso eliminaría las dos
+% cabezas y devolvería solo los elementos restantes.
+dameCola([_,_,_|L],L).
