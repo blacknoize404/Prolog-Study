@@ -1,5 +1,5 @@
 %----------------------------------------------------------
-%|              Universidad de Holguín (UHo)              |       
+%|           Universidad de Holguín (UHo) 2023            |       
 %|            ___           ___           ___             |
 %|           /\__\         /\__\         /\  \            | 
 %|          /:/  /        /:/  /        /::\  \           |
@@ -81,7 +81,7 @@ best_student:-
 
     % Imprimo en consola el resultado.
     write('El mejor estudiante es '),
-    write(Name),
+    write(Name), nl,
     
     % necesito terminar de devolver soluciones para student, ya que solo necesito 
     % el primero, así que coloco un corte verde.
@@ -113,12 +113,12 @@ get_students_of_career:-
         write('Los estudiantes que pertenecen a la carrera de '), 
         write(Career), 
         write(' son:\n'),
-        print_list(List), nl;
+        print_list(List);
         % en caso contrario, muestro el mensaje
         write('No hay estudiantes que pertenezcan a dicha carrera\n') 
     ).
   
-% b) 2.A partir de una carrera mostrar todas las asignaturas registradas a dicha carrera
+% b) 2. A partir de una carrera mostrar todas las asignaturas registradas a dicha carrera
 get_lectures_of_career :-
 
     write('Introduzca la carrera de la cual obtener las asignaturas...\n'),
@@ -142,7 +142,7 @@ get_lectures_of_career :-
         write('Las asignaturas registradas en la carrera de '),
         write(Career), 
         write(' son: \n'),
-        print_list(NoRepeatedLectures), nl;
+        print_list(NoRepeatedLectures);
         % en caso contrario emito un mensaje
         write('No se encontraron asignaturas para esa carrera o no esta registrada en el sistema\n')
     ).
@@ -191,7 +191,7 @@ best_students_of_career :-
         write('Los estudiantes ordenados por su promedio de notas de forma ascendente son:\n'),
         
         % muestro una línea formateada para cada uno de los estudiantes y su promedio
-        print_pairs(Averages, Names), nl;
+        print_pairs(Averages, Names);
 
         % en caso contrario emito un mensaje
         write('No se encontraron estudiantes para ordenar por su promedio\n')
