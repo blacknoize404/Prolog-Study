@@ -113,9 +113,9 @@ get_students_of_career:-
         write('Los estudiantes que pertenecen a la carrera de '), 
         write(Career), 
         write(' son:\n'),
-        print_list(List);
+        print_list(List), nl;
         % en caso contrario, muestro el mensaje
-        write('No hay estudiantes que pertenezcan a dicha carrera') 
+        write('No hay estudiantes que pertenezcan a dicha carrera\n') 
     ).
   
 % b) 2.A partir de una carrera mostrar todas las asignaturas registradas a dicha carrera
@@ -142,9 +142,9 @@ get_lectures_of_career :-
         write('Las asignaturas registradas en la carrera de '),
         write(Career), 
         write(' son: \n'),
-        print_list(NoRepeatedLectures);
+        print_list(NoRepeatedLectures), nl;
         % en caso contrario emito un mensaje
-        write('No se encontraron asignaturas para esa carrera o no esta registrada en el sistema')
+        write('No se encontraron asignaturas para esa carrera o no esta registrada en el sistema\n')
     ).
 
 % Caso base para cuando las listas estén vacías.
@@ -191,10 +191,10 @@ best_students_of_career :-
         write('Los estudiantes ordenados por su promedio de notas de forma ascendente son:\n'),
         
         % muestro una línea formateada para cada uno de los estudiantes y su promedio
-        print_pairs(Averages, Names);
+        print_pairs(Averages, Names), nl;
 
         % en caso contrario emito un mensaje
-        write('No se encontraron estudiantes para ordenar por su promedio')
+        write('No se encontraron estudiantes para ordenar por su promedio\n')
     ).
 
 % Creo un parser para ejecutar los métodos en dependencia de la opción escogida.
