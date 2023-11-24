@@ -20,13 +20,10 @@
 %|--------------------------------------------------------|
 %| Integrantes:                                           |
 %| Melissa Giraldo Rodríguez                              |
-%| Solans Tasis Hernández                                 |
-%| Diana Gabriela Rodríguez Rivas                         |
 %| Melany Marian Ricardo Rodríguez                        |
 %| José Enrique Villafruela Macías                        |
 %| Carlos Luis Barnés Infante                             |
 %|--------------------------------------------------------|
-
 
 % Base de conocimientos
 student('Ike', 25, informatics, [maths, history, uml], [3,2,3]).
