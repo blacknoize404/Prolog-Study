@@ -6,7 +6,7 @@
     {
       "label": "run prolog",
       "type": "shell",
-      "command": "swipl ${file}"
+      "command": "swipl [${file}]"
     }
   ]
 }

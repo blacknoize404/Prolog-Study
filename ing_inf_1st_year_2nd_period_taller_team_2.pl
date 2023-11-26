@@ -27,6 +27,7 @@
 
 % Base de conocimientos
 student('Ike', 25, informatics, [maths, history, uml], [3,2,3]).
+student('Ike', 25, informatics, [maths, history, uml], [3,2,3]).
 student('Juan', 19, informatics, [maths, history, uml, programming], [4,4,4,3]).
 student('Luis', 23, mechanic, [physics], [5]).
 student('Roberto', 20, architecture, [desing], [4]).
@@ -134,11 +135,13 @@ get_lectures_of_career :-
     % cuento el tamaño
     length(NoRepeatedLectures, Length),
     
+    
     % si el tamaño es mayor que 0 muestro el mensaje
     (Length > 0 -> 
         write('Las asignaturas registradas en la carrera de '),
         write(Career), 
         write(' son: \n'),
+        
         print_list(NoRepeatedLectures);
         % en caso contrario emito un mensaje
         write('No se encontraron asignaturas para esa carrera o no esta registrada en el sistema\n')
@@ -203,7 +206,7 @@ execute(Option):-
     Option == 0, true.
 
 % Creo un menú que se mostrará al inicio de la ejecución.
-menu:- 
+menu:-
     write('\n***Gestor de estudiantes***\n'),
     write('1. Obtener el mejor estudiante registrado en la base de datos\n'),
     write('2. Obtener todos los estudiantes registrados en una carrera\n'),

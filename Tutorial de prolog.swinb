@@ -1,0 +1,880 @@
+<div class="notebook">
+
+<div class="nb-cell html" name="htm1">
+<h1 align="center"> TUTORIAL DE PROLOG </h1>
+
+<p align="center">
+	<img src="https://avatars2.githubusercontent.com/u/6884283?v=3&amp;s=200">
+</p>
+<h5> Realizado por: <br> Cristian David González Carrillo <br> Julian Esteban Salomón Torres</h5>
+<hr>
+<h3> Contenido </h3>
+<ol>
+  <li>Introducción a Prolog</li>
+  <li>Base de Conocimiento</li>
+  <li>Términos</li>
+  <li>Expresiones
+  	<ul>
+      <li>Operadores Aritméticos</li>
+      <li>Operadores Relacionales</li>
+      <li>Operadores de listas</li>
+    </ul>
+  </li>
+  <li>Cláusulas o estructuras</li>
+  <li>Hechos</li>
+  <li>Reglas</li>
+  <li>Reglas Recursivas</li>
+  <li>Consultas</li>
+  <li>Listas</li>
+  <li>Pros y Contras </li>
+  <li>Aplicaciones</li>
+  <li>Ejercicios</li>
+  <li>Enlaces externos</li>
+</ol>
+</div>
+
+<div class="nb-cell html" name="htm2">
+<div id="introduccion"> 
+  <h3>1. Introducción a prolog. </h3> 
+  <h4>Lenguaje de programación declarativo: </h4>
+  <p> Prolog es un lenguaje de programación declarativo, lo que significa que es un lenguaje basado en la declaración de condiciones, proposiciones, 
+    afirmaciones... En el caso de prolog se hace la declaración de <b>hechos</b> y <b>reglas</b> como se verán mas adelante.
+  
+  </p>
+
+</div>
+</div>
+
+<div class="nb-cell html" name="htm4">
+<br>
+<div id="introduccion"> 
+  <h3>2. Base de Conocimiento. </h3> 
+  <p> 
+  	Para responder a las preguntas o consultas formuladas por el programador, Prolog consulta una base de conocimiento. Ésta base conocimiento representa el
+    programa como tal, programa que se compone unicamente de clausulas, que con el uso de la lógica, me expresan el conomiento deseado por el programa.
+  </p>
+  <p>
+    La base de conociento o el programa se guarda en un archivo con la extención <b><i>'.pl'</i></b>, archivo que puede ser abierto y a partir de esto poderle hacer consultas
+    a mi programa.
+    <br>
+    A continuación se muestra el comando para abrir un programa desde la consola de consultas:
+  </p>
+</div>
+</div>
+
+<div class="nb-cell query" name="q1">
+consult('nombre_archivo.pl').
+</div>
+
+<div class="nb-cell html" name="htm5">
+<br>
+  <h3>3. Términos. </h3> 
+  <p> 
+    Los términos en prolog son los componentes que conforman el lenguaje, y en este caso éstos van a ser los únicos elementos que componen un programa. 
+  </p> 
+  <p> 
+    Existen tres (3) tipos de términos:
+  </p> 
+  <ul>
+    <li><b> Constantes </b>
+      <ul>
+        <li><b> Átomo o Functor: </b> Son nombres de objetos, propiedades, o relaciones. Estos deben empezar en minúscula.</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="nb-cell program" name="p1">
+atomo(luis).
+atomo(color).
+atomo(padre).
+atomo('pedro').
+</div>
+
+<div class="nb-cell html" name="htm6">
+<ul style="list-style-type: none;">
+  <li>
+      <ul>
+        <li><b> Número: </b> Valores que solo pueden ser entero o reales, pueden llevar el signo.</li>
+        Ejemplos de las diferentes formas de expresar un número:
+      </ul>
+  </li>
+</ul>
+</div>
+
+<div class="nb-cell program" name="p2">
+numero(2).
+numero(216565).
+numero(1.54521).
+numero(-5).
+numero(-5.0).
+numero(2e10).
+</div>
+
+<div class="nb-cell html" name="htm7">
+<ul>
+  <li><b> Variables:</b> Se representan mediante cadenas representadas por <b>letras</b>, <b>números</b> o por el símbolo <b>‘_’</b>, 
+    para que Prolog las tome como variables, éstas deben empezar en mayúscula o con <b>‘_’</b>.
+  </li>
+  <br>
+  <p> A continuación se muestran algunos ejemplos: </p>
+</ul>
+</div>
+
+<div class="nb-cell program" name="p3">
+variable(X).
+variable(Variable).
+variable(_).
+variable(_var).
+</div>
+
+<div class="nb-cell html" name="htm8">
+<ul>
+  <p>Una <b>variable anónima</b> se representa por el nombre <b><i>‘_’</i></b> con la cual en cada instancia de ésta variable se refiere a una variable distinta.</p>
+</ul>
+</div>
+
+<div class="nb-cell html" name="htm3">
+
+</div>
+
+<div class="nb-cell html" name="htm9">
+<ul>
+  
+</ul>
+</div>
+
+<div class="nb-cell html" name="htm10">
+<ul>
+  <li>
+    <b> Estructuras:</b>
+  	Estos son términos compuestos por otros términos, donde la sintaxis que se tiene es la siguiente:
+    <br><br>
+    <b>nombre_atomo(termino1, termino2, ..., terminoN). </b>
+    <br>
+    Donde esos terminos del 1 al N, se les llama <b> argumentos </b>. Además, al nombre del atomo tambien se le llama <b>predicado</b>.
+    <br><br>
+    A continuación se muestran algunos ejemplos de estructuras:
+  </li>
+</ul>
+</div>
+
+<div class="nb-cell program" name="p4">
+padre(luis). % Estructura que toma un solo argumento.
+edad(luis, 30). % Estructura que ya se compone por más de un argumento.
+color(X). % Estructura con atomo llamado color y con un argumento que es una variable.
+</div>
+
+<div class="nb-cell html" name="htm21">
+<br>
+<style type="text/css">
+  .tg  {border-collapse:collapse;border-spacing:0;margin-left:auto;margin-right:auto;}
+  .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+  .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+  .tg .tg-baqh{text-align:center;vertical-align:top}
+  .tg .tg-yw4l{vertical-align:top}
+</style>
+<div id="operadores">
+  <h3>4. Expresiones. </h3>
+  <p>Los operadores nos permiten manipular diferentes tipos de datos.</p>
+  <ul>
+    <li id="op-aritm">
+      <h4>Operadores aritméticos.</h4>
+      <p>Con estos podemos llevar a cabo operaciones aritméticas entre números de tipo entero o real, sin embargo se tuvieron en cuenta sólo los básicos, pero existen para las funciones trigonométricas, valor absoluto, piso, techo, entre otros muchas más.</p>
+      <table class="tg">
+        <tbody><tr>
+          <th class="tg-baqh">Operador</th>
+          <th class="tg-baqh">Significado</th>
+        </tr>
+        <tr>
+          <td class="tg-baqh">+</td>
+          <td class="tg-yw4l">Suma</td>
+        </tr>
+        <tr>
+          <td class="tg-baqh">-</td>
+          <td class="tg-yw4l">Resta</td>
+        </tr>
+        <tr>
+          <td class="tg-baqh">*</td>
+          <td class="tg-yw4l">Multiplicación</td>
+        </tr>
+        <tr>
+          <td class="tg-baqh">/ y //</td>
+          <td class="tg-yw4l">División real y entera</td>
+        </tr>
+        <tr>
+          <td class="tg-baqh">^ y **</td>
+          <td class="tg-yw4l">Potencia</td>
+        </tr>
+        <tr>
+          <td class="tg-baqh">+</td>
+          <td class="tg-yw4l">Positivo</td>
+        </tr>
+        <tr>
+          <td class="tg-baqh">-</td>
+          <td class="tg-yw4l">Negativo</td>
+        </tr>
+      </tbody></table>
+      <p>
+        La notación de Positivo y Negativo es prefijo, el resto es infijo.
+      </p>
+    </li>
+    <li id="op-rel">
+      <h4>Operadores relacionales.</h4>
+      <p>Las operaciones relacionales nos permiten establecer relaciones de orden.</p>
+      <ul>
+        <li id="op-rel-con-ev">
+          <h5>Operadores relacionales con evaluación.</h5>
+          <p>Este tipo de operadores recibe valores numéricos y/o expresiones antes de realizar unificación o comparaciones evalúa el valor de la expresión.</p>
+          <table class="tg">
+            <tbody><tr>
+              <th class="tg-baqh">Operador</th>
+              <th class="tg-baqh">Significado</th>
+              <th class="tg-baqh">Ejemplo</th>
+            </tr>
+            <tr>
+              <td class="tg-baqh">is</td>
+              <td class="tg-yw4l">Unificación</td>
+              <td class="tg-yw4l">X is 10 + 2</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">=:=</td>
+              <td class="tg-yw4l">Igualdad</td>
+              <td class="tg-yw4l">10 + 2 =:= 5 + 7</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">=\=</td>
+              <td class="tg-yw4l">Desigualdad</td>
+              <td class="tg-yw4l">10 + 2 =\= 5 + 8</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">&gt; <br></td>
+              <td class="tg-yw4l">Mayor que</td>
+              <td class="tg-yw4l">11 * 3 &gt; 3 ^ 2</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">&lt;</td>
+              <td class="tg-yw4l">Menor que</td>
+              <td class="tg-yw4l">2 ** 10 &lt; 5 * 2</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">&gt;=</td>
+              <td class="tg-yw4l">Mayor o igual que</td>
+              <td class="tg-yw4l">99.0 &gt;= 0</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">=&lt;</td>
+              <td class="tg-yw4l">Igual o menor que</td>
+              <td class="tg-yw4l">-15 =&lt; 15</td>
+            </tr>
+          </tbody></table>
+        </li>
+        <li id="op-rel-sin-ev">
+          <h5>Operadores relacionales sin evaluación.</h5>
+          <p>
+            Para estos operadores el tipo de dato puede ser cualquiera.
+            <br><br>El orden entre tipos de datos es:
+            </p><ul>
+              <li>Variables sin instanciar &lt; Números decimales.</li>
+              <li>Números decimales &lt; Número natural (De mismo valor, si es diferente es por valor).</li>
+              <li>Números naturales &lt; Functors.</li>
+              <li>Functors &lt; Estructuras.</li>
+            </ul>
+            &nbsp; <b>Nota</b>: Los números naturales incluyen el 0.
+            <br><br> Comparar dos functors se realiza mediante su representación lexicográfica.
+            <br><br> Una estructura es menor que otra si: <br>
+            <ul>
+              <li>Tiene menor número de argumentos.</li>
+              <li>De acuerdo al functor.</li>
+              <li>Por los argumentos en orden</li>
+            </ul>
+          <p></p>
+          <table class="tg">
+            <tbody><tr>
+              <th class="tg-baqh">Operador</th>
+              <th class="tg-baqh">Significado</th>
+              <th class="tg-baqh">Ejemplo</th>
+            </tr>
+            <tr>
+              <td class="tg-baqh">=</td>
+              <td class="tg-yw4l">Unificación</td>
+              <td class="tg-yw4l">X = 10 + 2</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">==</td>
+              <td class="tg-yw4l">Igualdad</td>
+              <td class="tg-yw4l">10 + 2 == 10 + 2</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">\==</td>
+              <td class="tg-yw4l">Desigualdad</td>
+              <td class="tg-yw4l">10 + 2 \== 5 + 7</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">@&gt; </td>
+              <td class="tg-yw4l">Mayor que</td>
+              <td class="tg-yw4l">bananon @&gt; bananin</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">@&lt;</td>
+              <td class="tg-yw4l">Menor que</td>
+              <td class="tg-yw4l">parse @&lt; tree</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">@&gt;=</td>
+              <td class="tg-yw4l">Mayor o igual que</td>
+              <td class="tg-yw4l">ser @&gt;= humano</td>
+            </tr>
+            <tr>
+              <td class="tg-baqh">@=&lt;</td>
+              <td class="tg-yw4l">Igual o menor que</td>
+              <td class="tg-yw4l">raton @=&lt; teclado</td>
+            </tr>
+          </tbody></table>
+      	</li>
+      </ul>
+    </li>
+    <li>
+      <h4>Operadores de listas.</h4>
+      <p>Las operaciones en listas nos permiten consultar alguna propiedad de una lista, así como realizar modificaciones.</p>
+      <table class="tg">
+        <tbody><tr>
+          <th class="tg-baqh">Operador</th>
+          <th class="tg-baqh">Significado</th>
+          <th class="tg-baqh">Ejemplos</th>
+        </tr>
+        <tr>
+          <td class="tg-baqh">=</td>
+          <td class="tg-yw4l">Unificación</td>
+          <td class="tg-yw4l">[X, Y, Z] = [a, 1, 2.0]<br>[X, Y | Z] = [b, 2, 3.0]</td>
+        </tr>
+        <tr>
+          <td class="tg-yw4l">member(term, list)</td>
+          <td class="tg-yw4l">term ∈ list</td>
+          <td class="tg-yw4l">member(4.0, [c, 3, 4.0]).<br>member(X, [c, 3, 4.0]).</td>
+        </tr>
+        <tr>
+          <td class="tg-yw4l">append(list1, list2, result)</td>
+          <td class="tg-yw4l">Une list1 con list2</td>
+          <td class="tg-yw4l">append([h, o], [l, a], X).<br>append([h, o], X, [h, o, l, a]).<br>append(X, [l, a], [h, o, l, a]).<br>append(X, Y, [h, o, l, a]).</td>
+        </tr>
+        <tr>
+          <td class="tg-yw4l">length(list, result)</td>
+          <td class="tg-yw4l">Calcula la longitud de la lista</td>
+          <td class="tg-yw4l">length([3, 0.0, x], X).</td>
+        </tr>
+        <tr>
+          <td class="tg-yw4l">sort(list, result)</td>
+          <td class="tg-yw4l">Ordena la lista</td>
+          <td class="tg-yw4l">sort([4, a, 3], X).</td>
+        </tr>
+        <tr>
+          <td class="tg-yw4l">is_list(term)</td>
+          <td class="tg-yw4l">Comprueba si term es lista</td>
+          <td class="tg-yw4l">is_list([a, list]).</td>
+        </tr>
+      </tbody></table>
+    </li>
+  </ul>
+</div>
+</div>
+
+<div class="nb-cell html" name="htm11">
+<br>
+<h3>5. Cláusulas. </h3>
+
+Las cláusulas en Prolog están basadas en cláusulas de Horn.
+<br><img src="https://www.dropbox.com/s/944un2uh9d2hlca/hornClauseImplies.png?dl=1"><br>
+Lo cual sería equivalente a tener en Prolog:
+<br>p :- p1, p2, …, pm.<br>
+Donde p es la Cabeza y todos los pi son el Cuerpo, y cada uno de ellos son Functores.
+<br><br>
+Ejemplos:
+<br><br>planeta(marte). : Marte es un planeta.
+<br>hombre('Felipe'). : Felipe es un hombre.
+<br>mato(hombre(_), X).	: hombre(_) mató a X
+</div>
+
+<div class="nb-cell program" name="p22">
+come(A,B) :- 
+    carnivoro(A), animal(B), masDebil(B, A);
+    herbivoro(A), plantaComestible(B).
+</div>
+
+<div class="nb-cell html" name="htm39">
+Reescritas a lenguaje natural:<br>
+<br>"A come a B si, A es carnívoro y B es animal y B es más débil que A, o si A es herbívoro y B es una planta comestible."<br><br>
+Tipos de cláusulas:
+<br><br>
+<ul>
+  <li>Una cláusula con cabeza y cuerpo es llamada <b>Regla</b>.</li>
+  <li>Sin cuerpo es un <b>Hecho</b> o <b>Afirmación</b>.</li>
+  <li>Sin cabeza es una <b>Pregunta</b> o <b>Consulta</b>.</li>
+</ul>
+</div>
+
+<div class="nb-cell html" name="htm12">
+<br>
+<h3>6. Hechos. </h3>
+<p>
+  Un hecho es un mecanismo para representar propiedades o relaciones de  los objetos que se están representando. Los hechos declaran 
+  los valores que van a ser <b>verdaderos o afirmativos</b> para un predicado en todo el programa.
+  <br>
+  Los hechos siguen la siguiente sintaxis: <b>nombre_predicado(argumentos).</b>
+  <br>
+  Los hechos se dividen en 2 tipos: <b>propiedades</b> y <b>relaciones</b>.
+</p>
+<ul>
+  <li>
+    <b> Propiedades: </b> 
+    las propiedades se caracterizan por llevar un solo argumento y de esta manera expresan una propiedad de los objetos. Por ejemplo:  
+  </li>
+</ul>
+</div>
+
+<div class="nb-cell program" data-background="true" name="p5">
+color(azul).% azul es color - Denota la propiedad del azul de ser un color
+color(verde). % verde es color
+
+padre(juan).%Juan es padre - Denota la propiedad que tiene juan y es la de ser padre.
+padre(pablo). % Pablo es padre
+</div>
+
+<div class="nb-cell html" name="htm13">
+<ul>
+  <li>
+    <b> Relaciones: </b> 
+    las relaciones se caracterizan por llevar más de un argumento y de esta manera expresan la relación entre varios objetos. Por ejemplo:  
+  </li>
+</ul>
+</div>
+
+<div class="nb-cell program" data-background="true" name="p6">
+padrede('juan', 'maria'). % Juan es padre de maria - Este hecho expresa una relacion de padre-hijo
+padrede('pablo', 'juan'). % Pablo es padre de juan
+
+edad(juan, 30). % Juan tiene la edad de 30 años - Este hecho está relacionando a juan con un edad de 30 años, expresando una verdad o afirmación
+edad('pablo', 50).
+</div>
+
+<div class="nb-cell html" name="htm14">
+<br>
+<h3>7. Reglas. </h3>
+<p>
+  Cuando la verdad de un hecho depende de la verdad de otro hecho o de un grupo de hechos se usa una regla.
+  <br>
+  Permiten establecer relaciones más elaboradas entre objetos donde se declaran las condiciones para que un predicado sea cierto, 
+  combinando hechos para dar el valor de verdad del predicado.
+  <br>
+  La sintaxis base para una regla es la siguiente:
+</p>
+  <h2 align="center"> CABEZA :- CUERPO </h2>
+<p>
+  <br>
+  La forma como se debe leer esta sintaxis es de la siguiente manera: “La cabeza es verdad si el cuerpo es verdad”.
+  <br>
+  De esta manera se obtendrá el valor de verdad de la cabeza con el valor que se obtenga en el cuerpo, si el cuerpo resulta falso, la cabeza será falsa.
+  <br>
+  <b>Por ejemplo:</b>
+</p>
+</div>
+
+<div class="nb-cell program" data-background="true" name="p7">
+%A es hijo de B si B es padre de A
+hijode(A,B) :- padrede(B,A).
+
+% A es abuelo de B si A es padre de C y C es padre B
+abuelode(A,B) :- padrede(A,C), padrede(C,B).
+</div>
+
+<div class="nb-cell html" name="htm15">
+<p>
+  Las reglas se pueden dividir en 2 tipos, estos dependiendo de como se calcula el valor de verdad del cuerpo:
+</p>
+<ul>
+  <li>
+    <b>Conjunciones:</b>
+    Se usa una <b>coma</b> para separar los hechos del cuerpo de la regla. Este 'separador' se traduce como un <b>AND</b> lógico, concatenado cada hecho con
+    un <b>AND</b>.
+    <br> 
+    Por ejemplo:
+</li></ul>
+</div>
+
+<div class="nb-cell program" name="p8">
+% X es hermano de Y si existe algún padre Z que sea padre de X y Y
+hermano(X, Y) :- padre(Z), padrede(Z, X), padrede(Z, Y).
+</div>
+
+<div class="nb-cell html" name="htm16">
+<ul>
+  <li>
+    <b>Disyunciones:</b>
+    Se usa un <b>punto y coma</b> para separar los hechos del cuerpo de la regla. Este 'separador' se traduce como un <b>OR</b> lógico, concatenado cada hecho con
+    un <b>OR</b>.
+    <br> 
+    Por ejemplo:
+</li></ul>
+</div>
+
+<div class="nb-cell program" name="p9">
+% A y B son familiares si A es padre de B o A es hijo de B o A es hermano de B
+familiarde(A,B) :- padrede(A,B); hijode(A,B); hermanode(A,B).
+</div>
+
+<div class="nb-cell html" name="htm17">
+<br>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;Reglas Recursivas. </h3>
+<p>
+  Prolog permite el uso de la recursividad cuando se están definiendo reglas, esto es útil para definir reglas generales y más flexibles. Por ejemplo si
+  se quiere definir la regla <b>predecesor_de</b> se puede realizar de forma iterativa como se muestra a continuación:
+</p>
+</div>
+
+<div class="nb-cell program" name="p10">
+antecesor_de(X,Y) :- padrede(X, Y). % Padre
+antecesor_de(X,Y) :- padrede(X, Z), padrede(Z, Y). % Abuelo
+antecesor_de(X,Y) :- padrede(X, Z1), padrede(Z1, Z2), padrede(Z2, Y). %Bisabuelo
+</div>
+
+<div class="nb-cell html" name="htm18">
+<p>
+  Como se puede ver en el anterior ejemplo, para encontrar el antecesor de una persona genera mucho código, y el código generado genera hasta el bisabuelo, pero
+  si se quiere el 10 antecesor?
+</p>
+<p>
+  Para este caso se puede usar la recursividad para de esta manera generar de una forma general el antecesor. A continuación se muestra la forma de realizar esto:
+</p>
+</div>
+
+<div class="nb-cell program" name="p11">
+antecesor_de(X, Y) :- padrede(X, Y).                     % Paso base
+antecesor_de(X, Y) :- padrede(X, Z), antecesor_de(Z, Y). % Paso recursivo
+</div>
+
+<div class="nb-cell html" name="htm26">
+<p>
+  A continuación se muestra otro ejemplo de Reglas recursivas en el que se calcúla el factorial de un numero: 
+</p>
+</div>
+
+<div class="nb-cell program" name="p12">
+factorial(0, 1). % paso base.
+factorial(N, F) :- N&gt;0, N1 is N - 1, factorial(N1, F1), F is N * F1. % Paso recursivo.
+</div>
+
+<div class="nb-cell query" name="q2">
+factorial(5, RES)
+</div>
+
+<div class="nb-cell html" name="htm27">
+<br>
+<h3>8. Consultas</h3>
+<p>
+  Es el mecanismo para extraer conocimiento del programa, donde una consulta está constituida por una o más metas que Prolog debe resolver.
+  <br><br>Hecho:
+</p>
+</div>
+
+<div class="nb-cell program" name="p23">
+amigos(pedro, antonio).
+</div>
+
+<div class="nb-cell html" name="htm40">
+Consulta:
+</div>
+
+<div class="nb-cell query" name="q12">
+amigos(pedro, antonio).
+</div>
+
+<div class="nb-cell html" name="htm19">
+<br>
+<div id="resol-consultas">
+<h3>9. Resolución de consultas. </h3>
+  <p>
+    Para resolver consultas Prolog intenta unificar con algún Hecho o Regla con igual predicado, si es posible, se realiza lo mismo con el Cuerpo de la Regla sustituyendo en cada objetivo también lo que se logró unificar.
+  </p>
+  <p>
+    Si no se puede resolver un objetivo, se retrocede mediante backtracking con otras alternativas para su resolución, y se resuelve con la siguiente alternativa. Si no existen alternativas disponibles, el objetivo de partida falla. Si se vacía la lista de objetivos, el objetivo queda resuelto.
+  </p>
+</div>
+
+<h4>Ejemplo 1:</h4>
+
+Pablo es padre de Juan y de Andrés, ¿Juan es hermano de Andrés?
+</div>
+
+<div class="nb-cell html" name="htm28">
+
+</div>
+
+<div class="nb-cell program" name="p14">
+padre(pablo, juan).
+padre(pablo, andres).
+hermano(A, B) :- padre(C, A), padre(C, B).
+</div>
+
+<div class="nb-cell html" name="htm30">
+Si consultamos hermano(juan, andres), el proceso es el siguiente:
+<ol>
+  <li>
+    Se unifica con la regla hermano(A, B) y obtenemos:
+    <br>hermano(juan, andres) :- padre(C, juan), padre(C, andres).
+  </li>
+  <li>
+    Ahora se tendrá que hallar C para completar el primer objetivo, para lo cual unificamos con el hecho 1).
+    C = pablo.
+  </li>
+  <li>
+    Ya que C está definido debemos evaluar si padre(pablo, andres) es verdadero.
+  </li>
+  <li>
+    Se acaban los objetivos y todos fueron verdaderos, entonces, Juan es hermano de Andrés.
+  </li>
+</ol>
+</div>
+
+<div class="nb-cell query" name="q4">
+trace, hermano(juan, andres).
+</div>
+
+<div class="nb-cell html" name="htm29">
+<h4>Ejemplo 2</h4>
+</div>
+
+<div class="nb-cell program" name="p15">
+p(a, b).
+p(a, n(T, b)) :- q(_,b,a),r(T,b).
+q(c, b, a).
+q(a,b,c) :- r(g(a,b),d).
+r(n(b,a),b).
+</div>
+
+<div class="nb-cell query" name="q5">
+trace, p(a, X).
+</div>
+
+<div class="nb-cell html" name="htm32">
+<h4>Ejemplo 3</h4>
+</div>
+
+<div class="nb-cell program" name="p13">
+animal(conejo).
+animal(perro).
+carnivoro(perro).
+masDebil(conejo, perro).
+
+herbivoro(conejo).
+plantaComestible(lechuga).
+
+come(A,B) :-
+    carnivoro(A), animal(B), masDebil(B, A);
+    herbivoro(A), plantaComestible(B).
+</div>
+
+<div class="nb-cell html" name="htm31">
+Si consultamos come(X, Y), estaríamos preguntando para qué X e Y se cumple que X come a Y el proceso es el siguiente:
+<div style="text-align:center;">
+  <br><br><img width="500" src="https://www.dropbox.com/s/sl4il22a890pjkh/BacktAnimales.png?dl=1">
+  <br><br><img width="700" src="https://www.dropbox.com/s/ryuyz4bq4phcu0e/BacktAnm.png?dl=1">
+  <br><br><img width="500" src="https://www.dropbox.com/s/0pzpei4uacmgkmz/BacktAnim.png?dl=1">
+</div>
+</div>
+
+<div class="nb-cell query" name="q3">
+trace, come(X, Y).
+</div>
+
+<div class="nb-cell html" name="htm20">
+<br>
+<div id="lists">
+  <h3>10. Listas</h3>
+  <p>
+    Las listas son estructuras que contiene una secuencia ordenada de cualquier tipo de términos. Está formada recursivamente por una cabeza, que es el primer elemento de la lista y una cola, que es una lista del resto de elementos.
+    <br><br>
+    </p>
+    <div style="text-align:center;">
+      <img src="https://www.dropbox.com/s/91v0t6nor2cwwox/lista.png?dl=1">
+      <br>
+      Entonces podemos definir una lista como un predicado Lista(Cabeza, Cola).
+    </div>
+    <br>
+  	La notación para las componentes de una lista es: [A | B], donde A es la cabeza y B es el cuerpo.
+  <p></p>
+</div>
+</div>
+
+<div class="nb-cell html" name="htm34">
+<h4>Ejemplo 1:</h4>
+
+Hallar el último elemento de una lista.
+</div>
+
+<div class="nb-cell program" name="p16">
+ultimo([Result], Result).						% Base
+ultimo([_|L], Result) :- ultimo(L, Result).		% Recursividad
+</div>
+
+<div class="nb-cell query" name="q6">
+ultimo([a, [b,c], 2], Ultimo).
+</div>
+
+<div class="nb-cell html" name="htm35">
+<h4>Ejemplo 2:</h4>
+
+Hallar el elemento k de una lista.
+</div>
+
+<div class="nb-cell program" name="p17">
+elemento_k([Result|_], 0, Result).				% Base
+elemento_k([_|L], K, Result) :- K &gt; 0,			% Recursividad
+    							K1 is K -1,
+    							elemento_k(L, K1, Result).
+</div>
+
+<div class="nb-cell query" name="q7">
+elemento_k([a, [b,c], 2], 2, Elemento).
+</div>
+
+<div class="nb-cell html" name="htm36">
+<h4>Ejemplo 3:</h4>
+
+Idenificar si una lista es palindromo.
+</div>
+
+<div class="nb-cell program" name="p18">
+es_palindromo(L) :- reverse(L,L).
+</div>
+
+<div class="nb-cell query" name="q8">
+es_palindromo([a, b, a]).
+</div>
+
+<div class="nb-cell html" name="htm37">
+<h4>Ejemplo 4:</h4>
+
+Hallar el valor numérico máximo de una lista.
+</div>
+
+<div class="nb-cell program" name="p19">
+max_list([L], L).
+max_list([Cabeza|Cola], Max) :- max_list(Cola, MaxRec),
+    			      			Max is max(MaxRec, Cabeza).
+</div>
+
+<div class="nb-cell html" name="htm38">
+<h4>Ejemplo 5:</h4>
+
+Definir un árbol binario y sus recorridos preorder, inorder y postorder.
+<div style="text-align:center;">
+    <br><br><img src="https://www.dropbox.com/s/ik09u33yh2mq51s/tree1.png?dl=1">
+</div>
+</div>
+
+<div class="nb-cell query" name="q9">
+max_list([0, 5, 80], Maximo).
+</div>
+
+<div class="nb-cell program" name="p20">
+es_arbol_binario(nil).
+es_arbol_binario(t(Izquierda, _, Derecha)) :- es_arbol_binario(Izquierda), es_arbol_binario(Derecha).
+
+preorder(nil, []).
+preorder(t(Izquierda, Padre, Derecha), Lista) :- preorder(Izquierda,ListaL),
+                           						 preorder(Derecha, ListaR),
+                           						 append([Padre | ListaL], ListaR, Lista).
+
+inorder(nil, []).
+inorder(t(Izquierda, Padre, Derecha), Lista) :- inorder(Izquierda, ListaL),
+                         						inorder(Derecha, ListaR),
+                         						append(ListaL, [Padre | ListaR],Lista).
+
+postorder(nil, []).
+postorder(t(Izquierda, Padre, Derecha), Lista) :- postorder(Izquierda, ListaL),
+                              					  postorder(Derecha, ListaR),
+                              					  append(ListaL, ListaR, R1),
+                              					  append(R1, [Padre], Lista).
+
+mi_arbol_binario(t(t(t(nil, 2, nil), 4, t(nil, 5, nil)), 6, t(t(nil, 7, nil), 9, nil))).
+</div>
+
+<div class="nb-cell query" name="q10">
+mi_arbol_binario(Arbol), es_arbol_binario(Arbol), preorder(Arbol, RecorridoPre), inorder(Arbol, RecorridoIn), postorder(Arbol, RecorridoPost).
+</div>
+
+<div class="nb-cell html" name="htm33">
+<h4>Ejercicio</h4>
+<p>
+  Diseñe la estructura de un árbol n-ario y el recorrido preorder sobre un árbol de este tipo.
+  </p><div style="text-align:center;">
+    <br><br><img width="500" src="https://www.dropbox.com/s/8fkl5r26hzjtb8r/Nario.png?dl=1">
+  </div>
+<p></p>
+</div>
+
+<div class="nb-cell program" name="p21">
+es_arbol_n_ario([]).
+es_arbol_n_ario([_ | Hijos]) :- iterar_hijos(Hijos).
+
+iterar_hijos([]).
+iterar_hijos([Hijo | Lista]) :- es_arbol_n_ario(Hijo), iterar_hijos(Lista).
+
+preorder([], []).
+preorder([Padre | Hijos], Lista) :- iterar_preorder(Hijos, L),
+    								append([Padre], L, Lista).
+
+iterar_preorder([], []).
+iterar_preorder([Hijo | Lista], RecorridoHermanos) :- preorder(Hijo, Recorrido),
+    										  iterar_preorder(Lista, RecorridoHermano),
+    										  append(Recorrido, RecorridoHermano, RecorridoHermanos).
+                                           
+                                           
+mi_arbol_n_ario( [5, [8, [7, [9]], [10]], [11, [1]] ] ).
+</div>
+
+<div class="nb-cell query" name="q11">
+mi_arbol_n_ario(Arbol), es_arbol_n_ario(Arbol), preorder(Arbol, Recorrido).
+</div>
+
+<div class="nb-cell html" name="htm22">
+<br>
+<h3>11. Pros y Contras. </h3>
+<p align="center">
+<img src="https://www.dropbox.com/s/ebl5btplkviw02b/des-ven.png?dl=1">
+</p>
+</div>
+
+<div class="nb-cell html" name="htm23">
+<br>
+<h3>12. Aplicaciones. </h3>
+A continuación se listan algunas aplicaciones de Prolog:
+<ol>
+  <li>Prolog puede resolver básicamente cualquier tipo de problema.</li>
+  <li>Investigación en inteligencia artificial</li>
+  <li>Gestión de juegos.</li>
+  <li>Sistemas expertos que emulan la habilidad de un humano para la toma de decisiones.</li>
+  <li>Software "clarissa" construido por la <b>NASA</b> par la <b>ISS</b>. Es una interfaz de voz que busca los procesos de la estación.</li>
+  <li><b> SICStus Prolog</b> se encarga de la logística de la reservación de boletos de aerolíneas y ayudar a los ferrocarriles a operar mejor.</li>
+  <li>Academia.</li>
+  <li>Investigación en inteligencia artificial</li>
+</ol>
+</div>
+
+<div class="nb-cell html" name="htm24">
+<br>
+<h3>13. Ejercicios. </h3>
+</div>
+
+<div class="nb-cell html" name="htm25">
+<br>
+<h3>14. Enlaces Externos. </h3>
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Prolog">Wikipedia - Prolog</a></li>
+  <li><a href="https://www.dsi.fceia.unr.edu.ar/downloads/IIA/recursos/Tutorial%20de%20%20Prolog.pdf">Tutorial de Prolog - U. Nacional de Rosario</a></li>
+  <li><a href="arantxa.ii.uam.es/~dcamacho/logica/recursos/manual_prolog.pdf">Manual de Prolog</a></li>
+  <li><a href="http://ferestrepoca.github.io/paradigmas-de-programacion/proglogica/tutoriales/prolog-gh-pages/index.html">Paradigmas de Programacion - Prolog - ferestrepoca</a></li>
+</ul>
+</div>
+
+</div>
